@@ -3,6 +3,7 @@
 ## Installation and preparation
 
 - Create a virtualenv `python -m .venv`
+- Install dependenciies `pip install -r requirements.txt`
 - Initiate db migration `python manage.py migrate`
 
 > **Note:** This program doesn't need to run the server, we will rely on unit tests to check working api endpoints.
