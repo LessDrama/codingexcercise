@@ -22,6 +22,6 @@ from url.views import url_create_view, url_detail_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("shorturl", url_create_view, name="url-create"),
-    path("shorturl/<str:key>", url_detail_view, name="url-detail"),
+    path("/", url_create_view, name="url-create"),
+    path("/<str:key>", url_detail_view, name="url-detail"),
 ]

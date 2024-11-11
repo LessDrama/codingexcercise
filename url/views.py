@@ -4,12 +4,15 @@ from django.views.decorators.http import require_http_methods
 @require_http_methods(["POST"])
 def url_create_view(request, *args, **kwargs):
     # When creating a short url:
-    #   - it should generate url-safe key.
-    #       - the key should have 10 characters length.
+    #   - it should generate a 10 char-length safe-url key.
+    #       - it can be access via: <domain>/<key>.
+    #       -   e.g. http://localhost:8000/random-key
+    #       -   see urls.py for endpoint details.
     #   - it should return a data in json format.
     #   - it should return a CREATED status code.
     #   - it should be idempotent.
-    #       - for idempotent, should return OK status code.
+    #       - for idempotent, should return OK status code
+    #         and the existing data.
     #   - it should validate the url (optional).
     #       - if fails, it should return a BAD REQUEST status code.
     ...
