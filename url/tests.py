@@ -60,16 +60,30 @@ def test_create_short_url_invalid_url(client: Client):
     ), "Creating invalid short url did not return a BAD REQUEST status."
 
 
+def test_redirect_short_url(client: Client, short_url: Url):
+    url = reverse("url-redirect", kwargs={"key": short_url.key})
+    detail_response = client.get(path=url)
+    assert detail_response.status_code == HTTPStatus.FOUND, "Not re-directed."
+
+
+def test_redirect_short_url_not_found(client: Client, short_url: Url):
+    url = reverse("url-redirect", kwargs={"key": short_url.key[:3]})
+    detail_response = client.get(path=url)
+    assert (
+        detail_response.status_code == HTTPStatus.NOT_FOUND
+    ), "Did not return NOT FOUND status code."
+
+
 def test_get_short_url(client: Client, short_url: Url):
     views = random.randint(1, 100)
     for _ in range(views):
-        url = reverse("url-detail", kwargs={"key": short_url.key})
-        detail_response = client.get(path=url)
+        url = reverse("url-redirect", kwargs={"key": short_url.key})
+        client.get(path=url)
 
-    view_data = detail_response.json()
+    short_url.refresh_from_db(fields=["views"])
     assert (
-        view_data["views"] == views
-    ), f"It returned {view_data['views']} views, but expected {views} views."
+        short_url.views == views
+    ), f"It returned {short_url.views} views, but expected {views} views."
 
 
 def test_get_short_url_not_found(client: Client, short_url: Url):
