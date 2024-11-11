@@ -17,12 +17,12 @@ This template already provides the endpoints necessary for the url shortener app
 - The `/<key>` for redirecting shorturl.
 - The `/<key>/detail` for getting shorturl information.
 
-The views for the following endpoints resides on `views.py`. The `url_create_view`, `url_redirect_view`, and `url_detail_view`. These views are empty and have no logic.
+The views for the following endpoints resides on `views.py`. The `url_create_view`, `url_redirect_view`, and `url_detail_view`. These views are empty and have no logic and current tests are failing.
 
-What we need to do is to add logic into this view to achieve the following endpoint results:
+In order to make all tests passed, you need to do the following endpoints behavior:
 
 - For `/create` endpoint:
-    - It should accept a `url` payload and return shortUrl in `JSON` format. e.g.:
+    - It should accept a `url` payload and return `shortUrl` in `JSON` format. e.g.:
         - Input:
             ```
             { url: "http://example.com/ultra-very-long-descriptive-url" }
@@ -36,23 +36,30 @@ What we need to do is to add logic into this view to achieve the following endpo
             ```
             { shortUrl: "http://localhost:8000/TkAIbLPWrQ" }
             ```
-
     - The `<key>` should be a random 10-char length safe-url string. It can be any characters as long as it is url safe.
     - The data should be stored on `Url` model on `models.py`.
         - Where the `url` field is the original url.
         - The `key` is the unique shorturl identifer for the long `url`.
+    - It should return a CREATED status code.
+    - It should be idempotent.
+      - for idempotent, should return OK status code and the existing data.
+    - It should validate the url.
+       - if fails, it should return a BAD REQUEST status code.
 
 - For `/<key>` endpoint:
     - Accesing this url will redirect you to the original url.
     - Everytime we visit the short url, increase the number of views of the url.
+    - if short url key is not found, return a NOT FOUND status code.
 
 - For `/<key>/details`:
     - It should return the details of the short url e.g.:
         ```
         {url: http://example.com/ultra-long-url-with-more-data-xxx, views: 100}
         ```
+    - If not found, return a NOT FOUND status code.
+    - It should return an OK status code.
 
-> **Note:** Work on the `views.py` there will be more instructions and you can also check `tests.py` for hints.
+You need to work on the `views.py`. You can also check `tests.py` for hints.
 
 ## Tests
 
