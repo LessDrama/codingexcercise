@@ -27,4 +27,4 @@
 
 ## Tests
 
-- Run `pytest .`
+- Run `pytest .`, the goal is to make all tests passed.
