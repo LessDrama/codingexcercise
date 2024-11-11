@@ -18,10 +18,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from url.views import url_create_view, url_detail_view
+from url.views import url_create_view, url_detail_view, url_redirect_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("/", url_create_view, name="url-create"),
-    path("/<str:key>", url_detail_view, name="url-detail"),
+    path("/<str:key>", url_redirect_view, name="url-redirect"),
+    path("/<str:key>/detail", url_detail_view, name="url-detail"),
 ]
