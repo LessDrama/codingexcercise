@@ -20,8 +20,8 @@ def url_create_view(request, *args, **kwargs):
 
 @require_http_methods(["GET"])
 def url_detail_view(request, key: str):
-    # Each time you access a short url key:
-    #   - it should return how many views has the short url key.
+    # Each time you access a short url key via http://localhost:8000/random-key:
+    #   - it should return how many views the short url key has.
     #       - if not found, return a NOT FOUND status code.
     #   - it should return a data in json format.
     #   - it should return an OK status code.
