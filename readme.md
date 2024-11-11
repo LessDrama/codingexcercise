@@ -5,10 +5,6 @@
 - Create a virtualenv `python -m .venv`
 - Initiate db migration `python manage.py migrate`
 
-## Tests
-
-- Run `pytest .`
-
 > **Note:** This program doesn't need to run the server, we will rely on unit tests to check working api endpoints.
 
 ## Instruction
@@ -27,4 +23,8 @@
     - It should return the details of the short url.
     - e.g. `{url: http://example.com/ultra-long-url-with-more-data-xxx, views: 100}`. 
 
-> **Note:** More instructions on the `views.py`.
+> **Note:** Work on the `views.py` there will be more instruction and you can also check `tests.py` for hints.
+
+## Tests
+
+- Run `pytest .`
