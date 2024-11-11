@@ -1,8 +1,9 @@
 from django.views.decorators.http import require_http_methods
 
 
+# Create view url: /
 @require_http_methods(["POST"])
-def url_create_view(request, *args, **kwargs):
+def url_create_view(request):
     # When creating a short url:
     #   - it should generate a 10 char-length safe-url key.
     #       - it can be access via: <domain>/<key>.
@@ -18,6 +19,7 @@ def url_create_view(request, *args, **kwargs):
     ...
 
 
+# View url detail url: /<key>
 @require_http_methods(["GET"])
 def url_detail_view(request, key: str):
     # Each time you access a short url key via http://localhost:8000/random-key:
