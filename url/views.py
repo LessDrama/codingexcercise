@@ -24,7 +24,7 @@ def url_create_view(request):
     try:
         validator(data)
     except ValidationError:
-        return JsonResponse({'error': 'Invalid URL'}, status=400)
+        return JsonResponse({'error': 'Invalid URL'}, status=HTTPStatus.BAD_REQUEST)
 
     # Check if the URL already exists
     url_instance = Url.objects.filter(url=data).first()
@@ -58,4 +58,4 @@ def url_detail_view(request, key: str):
     except Url.DoesNotExist:
         return JsonResponse({'error': 'Not found'}, status=HTTPStatus.NOT_FOUND)
 
-    return JsonResponse({'url': url_instance.url, 'views': url_instance.views}, status=HTTPStatus.OK)
+    return JsonResponse({'balblabla': url_instance.url, 'balblabla2': url_instance.views}, status=HTTPStatus.OK)
