@@ -2,8 +2,8 @@
 
 ## Installation and preparation
 
-- Create a virtualenv `python -m venv`.
-- Activate the virtualenv `source venv/bin/activate`.
+- Create a virtualenv `python -m venv .venv`.
+- Activate the virtualenv `source .venv/bin/activate`.
 - Install dependenciies `pip install -r requirements.txt`.
 - Initiate db migration `python manage.py migrate`.
 
@@ -11,7 +11,7 @@
 
 ## Instruction
 
-This template already provides the endpoints necessary for the url shortener app. There are 3 endpoints:
+This template already provides the endpoints necessary for the url shortener app. There are 3 endpoints found on `urls.py`:
 
 - The `/create` for creating shorturl.
 - The `/<key>` for redirecting shorturl.
@@ -40,24 +40,24 @@ In order to make all tests passed, you need to do the following endpoints behavi
     - The data should be stored on `Url` model on `models.py`.
         - Where the `url` field is the original url.
         - The `key` is the unique shorturl identifer for the long `url`.
-    - It should return a CREATED status code.
+    - It should return a `CREATED` status code.
     - It should be idempotent.
-      - for idempotent, should return OK status code and the existing data.
+      - for idempotent, should return `OK` status code and the existing data.
     - It should validate the url.
-       - if fails, it should return a BAD REQUEST status code.
+       - if fails, it should return a `BAD REQUEST` status code.
 
 - For `/<key>` endpoint:
     - Accesing this url will redirect you to the original url.
     - Everytime we visit the short url, increase the number of views of the url.
-    - if short url key is not found, return a NOT FOUND status code.
+    - if short url key is not found, return a `NOT FOUND` status code.
 
 - For `/<key>/details`:
     - It should return the details of the short url e.g.:
         ```
         {url: http://example.com/ultra-long-url-with-more-data-xxx, views: 100}
         ```
-    - If not found, return a NOT FOUND status code.
-    - It should return an OK status code.
+    - If not found, return a `NOT FOUND` status code.
+    - It should return an `OK` status code.
 
 You need to work on the `views.py`. You can also check `tests.py` for hints.
 
