@@ -59,7 +59,7 @@ In order to make all tests passed, you need to do the following endpoints behavi
     - If not found, return a `NOT FOUND` status code.
     - It should return an `OK` status code.
 
-You need to work on the `views.py`. You can also check `tests.py` for hints.
+You need to work on the `views.py` and write relevant logic to make all tests passed. You can also check `tests.py` for hints.
 
 ## Tests
 
