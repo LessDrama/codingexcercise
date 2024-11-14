@@ -58,4 +58,4 @@ def url_detail_view(request, key: str):
     except Url.DoesNotExist:
         return JsonResponse({'error': 'Not found'}, status=HTTPStatus.NOT_FOUND)
 
-    return JsonResponse({'balblabla': url_instance.url, 'balblabla2': url_instance.views}, status=HTTPStatus.OK)
+    return JsonResponse({'shortUrl': url_instance.url, 'views': url_instance.views}, status=HTTPStatus.OK)
